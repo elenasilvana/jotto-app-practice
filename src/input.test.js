@@ -2,11 +2,11 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import { findByTestAttr, storeFactory } from "../test/testUtils";
-import Input from "./input";
+import { InputComponent } from "./input";
 
 const setup = (initialState = {}) => {
   const store = storeFactory(initialState);
-  const wrapper = shallow(<Input store={store} />)
+  const wrapper = shallow(<InputComponent store={store} />)
     .dive()
     .dive(); //to get the child component on the Input
   //render the component
