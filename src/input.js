@@ -16,7 +16,16 @@ export const Input = ({ secretWord }) => {
           value={currentGuess}
           onChange={(event) => setCurrentGuess(event.target.value)}
         />
-        <button data-test="submit-button" className="btn btn-primary mb-2">
+        <button
+          data-test="submit-button"
+          className="btn btn-primary mb-2"
+          //TODO: update guessedWords
+          //TODO: check against secret word and update success if needed
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentGuess("");
+          }}
+        >
           Submit
         </button>
       </form>
