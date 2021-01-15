@@ -17,4 +17,16 @@ describe("Input component", () => {
   it("should receive secretWord as prop, and it should be string", () => {
     checkProps(Input, { secretWord: "party" });
   });
+  it("state controlled input field", () => {
+    const mockSetCurrentGuess = jest.fn();
+    React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
+
+    const wrapper = setup();
+    const inputBox = findByTestAttr(wrapper, "input-box");
+
+    const mockEvent = { target: { value: "train" } };
+    inputBox.simulate("change", mockEvent);
+
+    expect(mockSetCurrentGuess).toHaveBeenCalledWith("train");
+  });
 });
