@@ -1,6 +1,8 @@
 import React from "react";
 import hookActions from "./actions/hookActions";
 
+import { Input } from "./input";
+
 function reducer(state, action) {
   switch (action.type) {
     case "SET_SECRET_WORD":
@@ -29,5 +31,20 @@ export const App = (props) => {
     hookActions.getSecretWord(setSecretWord);
   }, []);
 
-  return <div className="container" data-test="component-app"></div>;
+  return (
+    <>
+      {state.secretWord ? (
+        <div className="container" data-test="component-app">
+          <Input secretWord={state.secretWord} />
+        </div>
+      ) : (
+        <div className="container" data-test="spinner">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+          <p>Loading secret word</p>
+        </div>
+      )}
+    </>
+  );
 };
